@@ -9,7 +9,13 @@
     body {margin:0; font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); line-height:1.6; overflow-x:hidden;}
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
 
-    .coupon-banner {background:var(--red); color:white; text-align:center; padding:14px; font-weight:bold; font-size:1.25rem; position:fixed; top:0; left:0; width:100%; z-index:9999; animation:pulse 2s infinite; cursor:pointer;}
+    /* FLASH15 BANNER — NOW FADES OUT SMOOTHLY ON CLICK */
+    .coupon-banner {
+      background:var(--red); color:white; text-align:center; padding:14px; font-weight:bold; font-size:1.25rem;
+      position:fixed; top:0; left:0; width:100%; z-index:9999; cursor:pointer;
+      animation:pulse 2s infinite; opacity:1;
+      transition:opacity 0.8s ease;
+    }
     @keyframes pulse {0%,100%{transform:scale(1)} 50%{transform:scale(1.03)}}
 
     .sales-desktop {position:fixed; top:70px; left:50%; transform:translateX(-50%); background:#1a1a2e; color:white; padding:18px 50px; border-radius:16px; border:3px solid var(--accent); box-shadow:0 15px 40px rgba(0,0,0,0.7); font-size:1.5rem; font-weight:700; z-index:9998; opacity:0; transition:opacity 1.5s ease;}
@@ -33,31 +39,20 @@
     .guarantee-box {background:#000; border:4px solid gold; border-radius:20px; padding:30px; max-width:600px; margin:auto; font-size:1.5rem; font-weight:bold; color:gold; text-align:center;}
 
     .grid {display:grid; grid-template-columns:repeat(auto-fit,minmax(340px,1fr)); gap:40px; margin:80px 0;}
-    
-    /* CARD BASE + SMOOTH LIFT */
     .card {
-      background:var(--card);
-      border-radius:20px;
-      padding:40px 25px;
-      text-align:center;
-      box-shadow:0 15px 40px rgba(0,0,0,0.6);
-      border:2px solid transparent;
-      transition:transform 0.6s cubic-bezier(0.25,0.8,0.25,1);
-      position:relative;
-      overflow:hidden;
-      will-change:transform;
+      background:var(--card); border-radius:20px; padding:40px 25px; text-align:center;
+      box-shadow:0 15px 40px rgba(0,0,0,0.6); border:2px solid transparent;
+      transition:transform 0.6s cubic-bezier(0.25,0.8,0.25,1); position:relative; overflow:hidden; will-change:transform;
     }
     .card:hover, .card.highlight {transform:translateY(-20px); z-index:10;}
 
-    /* BREATHING GLOW KEYFRAMES */
-    @keyframes glow-starter   {0%,100%{box-shadow:0 25px 60px rgba(16,185,129,0.5);}   50%{box-shadow:0 35px 80px rgba(16,185,129,0.9);}}
-    @keyframes glow-pro       {0%,100%{box-shadow:0 25px 60px rgba(239,68,68,0.5);}    50%{box-shadow:0 35px 80px rgba(239,68,68,0.9);}}
-    @keyframes glow-lifetime  {0%,100%{box-shadow:0 25px 60px rgba(251,191,36,0.6);}  50%{box-shadow:0 40px 90px rgba(251,191,36,1);}}
+    @keyframes glow-starter {0%,100%{box-shadow:0 25px 60px rgba(16,185,129,0.5);} 50%{box-shadow:0 35px 80px rgba(16,185,129,0.9);}}
+    @keyframes glow-pro {0%,100%{box-shadow:0 25px 60px rgba(239,68,68,0.5);} 50%{box-shadow:0 35px 80px rgba(239,68,68,0.9);}}
+    @keyframes glow-lifetime {0%,100%{box-shadow:0 25px 60px rgba(251,191,36,0.6);} 50%{box-shadow:0 40px 90px rgba(251,191,36,1);}}
 
-    /* INDIVIDUAL ANIMATED GLOW */
-    .card:nth-child(1):hover, .card:nth-child(1).highlight   {border-color:#10b981; animation:glow-starter 2s infinite ease-in-out;}
-    .card:nth-child(2):hover, .card:nth-child(2).highlight   {border-color:#ef4444; animation:glow-pro 2s infinite ease-in-out;}
-    .card:nth-child(3):hover, .card:nth-child(3).highlight   {border-color:#fbbf24; animation:glow-lifetime 2.3s infinite ease-in-out;}
+    .card:nth-child(1):hover, .card:nth-child(1).highlight {border-color:#10b981; animation:glow-starter 2s infinite ease-in-out;}
+    .card:nth-child(2):hover, .card:nth-child(2).highlight {border-color:#ef4444; animation:glow-pro 2s infinite ease-in-out;}
+    .card:nth-child(3):hover, .card:nth-child(3).highlight {border-color:#fbbf24; animation:glow-lifetime 2.3s infinite ease-in-out;}
 
     .price {font-size:4.5rem; font-weight:800; background:linear-gradient(90deg,#8b5cf6,#3b82f6); -webkit-background-clip:text; -webkit-text-fill-color:transparent;}
     .old-price {text-decoration:line-through; color:var(--light); font-size:1.4rem;}
@@ -85,7 +80,8 @@
 </head>
 <body>
 
-<div class="coupon-banner" onclick="document.getElementById('lifetime-card').scrollIntoView({behavior:'smooth'}); document.getElementById('lifetime-card').classList.add('highlight'); setTimeout(()=>document.getElementById('lifetime-card').classList.remove('highlight'),3000);">
+<!-- FLASH15 BANNER — NOW FADES OUT ON CLICK -->
+<div class="coupon-banner" id="flashBanner" onclick="scrollToLifetime()">
   FLASH15 = 15% OFF NEXT 24H ONLY
 </div>
 
@@ -177,6 +173,18 @@
 <footer><div class="container"><p>100% real contacts • Instant delivery • Reply to the email if you have questions — I answer personally</p></div></footer>
 
 <script>
+  // FLASH15 CLICK → SCROLL + FLASH + TEMPORARILY HIDE BANNER
+  function scrollToLifetime() {
+    document.getElementById('lifetime-card').scrollIntoView({behavior:'smooth'});
+    document.getElementById('lifetime-card').classList.add('highlight');
+    setTimeout(()=>document.getElementById('lifetime-card').classList.remove('highlight'),3000);
+
+    const banner = document.getElementById('flashBanner');
+    banner.style.opacity = '0';
+    setTimeout(() => { banner.style.opacity = '1'; }, 30000);
+  }
+
+  // Existing scripts (spots, timer, sales, popups)
   let spots = parseInt(localStorage.getItem("spotsLeft")) || 12;
   document.getElementById("spots-left").textContent = spots;
   setInterval(() => {
