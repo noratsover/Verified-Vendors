@@ -8,7 +8,7 @@
     :root { --bg:#0f0f1a; --card:#1a1a2e; --accent:#8b5cf6; --accent2:#3b82f6; --text:#e2e8f0; --light:#94a3b8; }
     body { margin:0; font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
-    header { background:linear-gradient(135deg,#1e1b4b,#0f0f1a); text-align:center; padding:100px 20px; border-bottom:3px solid var(--accent); }
+    header { background:linear-gradient(135deg,#1e1b4b,#0f0f1a); text-align:center; padding:100px 20px 60px; border-bottom:3px solid var(--accent); }
     h1 { margin:0; font-size:3.8rem; font-weight:800; background:linear-gradient(90deg,#8b5cf6,#3b82f6); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
     h2 { text-align:center; padding:50px 0 20px; font-size:2.3rem; color:var(--accent); }
     .container { max-width:1200px; margin:auto; padding:0 20px; }
@@ -18,8 +18,14 @@
     .card:hover { transform:translateY(-15px); box-shadow:0 25px 50px rgba(139,92,246,0.25); border-color:var(--accent); }
     .price { font-size:4rem; font-weight:800; background:linear-gradient(90deg,#8b5cf6,#3b82f6); -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin:15px 0; }
     .old-price { text-decoration:line-through; color:var(--light); font-size:1.3rem; }
-    .buy-btn { margin:30px auto 10px; } /* clean spacing */
-    .buy-btn form { all:unset; } /* removes default form styling */
+    .buy-btn { margin:30px auto 10px; }
+    .buy-btn form { all:unset; }
+
+    /* COUNTDOWN TIMER */
+    .countdown-wrapper { background:rgba(139,92,246,0.2); border:2px solid #8b5cf6; border-radius:16px; padding:20px; max-width:600px; margin:30px auto 0; text-align:center; }
+    .countdown-title { font-size:1.4rem; font-weight:700; margin-bottom:10px; color:#e2e8f0; }
+    #countdown { font-size:2.5rem; font-weight:800; letter-spacing:4px; color:#8b5cf6; }
+
     footer { background:#0a0a14; color:var(--light); text-align:center; padding:60px 20px; margin-top:100px; border-top:1px solid rgba(139,92,246,0.3); }
     .tag { display:inline-block; background:rgba(139,92,246,0.3); padding:10px 24px; border-radius:50px; font-size:0.95rem; margin:10px; }
   </style>
@@ -34,6 +40,12 @@
     </p>
     <div class="tag">2025 Updated</div>
     <div class="tag">Fast 2–9 Day Shipping</div>
+
+    <!-- URGENCY COUNTDOWN -->
+    <div class="countdown-wrapper">
+      <div class="countdown-title">Price increases in...</div>
+      <div id="countdown">23h 59m 59s</div>
+    </div>
   </div>
 </header>
 
@@ -105,6 +117,28 @@
     <p>100% real contacts • Instant delivery • Reply to the email if you have questions — I answer personally</p>
   </div>
 </footer>
+
+<!-- COUNTDOWN SCRIPT (24-hour auto-reset) -->
+<script>
+  function startCountdown() {
+    const now = new Date().getTime();
+    const midnight = new Date();
+    midnight.setHours(24, 0, 0, 0);
+    const distance = midnight - now;
+
+    const hours = Math.floor(distance / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    document.getElementById("countdown").innerHTML = 
+      hours + "h " + minutes + "m " + seconds + "s";
+
+    if (distance < 0) clearInterval(countdownInterval);
+  }
+
+  const countdownInterval = setInterval(startCountdown, 1000);
+  startCountdown();
+</script>
 
 </body>
 </html>
