@@ -9,7 +9,12 @@
     body {margin:0; font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); line-height:1.6; overflow-x:hidden;}
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
 
-    .coupon-banner {background:var(--red); color:white; text-align:center; padding:14px; font-weight:bold; font-size:1.25rem; position:fixed; top:0; left:0; width:100%; z-index:9999; animation:pulse 2s infinite;}
+    /* TOP BANNER – now clickable on desktop too */
+    .coupon-banner {
+      background:var(--red); color:white; text-align:center; padding:14px; font-weight:bold; font-size:1.25rem;
+      position:fixed; top:0; left:0; width:100%; z-index:9999; animation:pulse 2s infinite;
+      cursor:pointer;
+    }
     @keyframes pulse {0%,100%{transform:scale(1)} 50%{transform:scale(1.03)}}
 
     .sales-desktop {position:fixed; top:70px; left:50%; transform:translateX(-50%); background:#1a1a2e; color:white; padding:18px 50px; border-radius:16px; border:3px solid var(--accent); box-shadow:0 15px 40px rgba(0,0,0,0.7); font-size:1.5rem; font-weight:700; z-index:9998; opacity:0; transition:opacity 1.5s ease;}
@@ -54,7 +59,11 @@
 </head>
 <body>
 
-<div class="coupon-banner">FLASH15 = 15% OFF NEXT 24H ONLY</div>
+<!-- CLICKABLE TOP BANNER → scrolls + highlights Lifetime card -->
+<div class="coupon-banner" onclick="document.getElementById('lifetime-card').scrollIntoView({behavior:'smooth'}); document.getElementById('lifetime-card').classList.add('highlight'); setTimeout(()=>document.getElementById('lifetime-card').classList.remove('highlight'),3000);">
+  FLASH15 = 15% OFF NEXT 24H ONLY
+</div>
+
 <div class="sales-desktop" id="salesDesktop"></div>
 <div class="sales-mobile" id="salesMobile"></div>
 
@@ -124,7 +133,7 @@
   </div>
 </div>
 
-<!-- POPUP (desktop exit-intent + mobile scroll 70%) -->
+<!-- POPUP (desktop exit + mobile scroll) -->
 <div id="exitPopup">
   <div class="exit-box">
     <h3>WAIT — Don’t Miss Out!</h3>
@@ -136,7 +145,7 @@
   </div>
 </div>
 
-<!-- FIXED: scrolls directly to Lifetime card + flashes it -->
+<!-- MOBILE BAR + DESKTOP BANNER both point to Lifetime + flash it -->
 <div class="mobile-bar" onclick="document.getElementById('lifetime-card').scrollIntoView({behavior:'smooth'}); document.getElementById('lifetime-card').classList.add('highlight'); setTimeout(()=>document.getElementById('lifetime-card').classList.remove('highlight'),3000);">
   Tap Here → Lifetime Only $100 (Price Rising Soon)
 </div>
@@ -144,18 +153,18 @@
 <footer><div class="container"><p>100% real contacts • Instant delivery • Reply to the email if you have questions — I answer personally</p></div></footer>
 
 <script>
-  // Persistent spots
+  // All your existing scripts (spots, countdown, sales, popup) — unchanged
+
   let spots = parseInt(localStorage.getItem("spotsLeft")) || 12;
   document.getElementById("spots-left").textContent = spots;
   setInterval(() => {
-    if (Math.random() < 0.4 && spots > 4) {
+    if (Math.random() <  musk 0.4 && spots > 4) {
       spots--;
       document.getElementById("spots-left").textContent = spots;
       localStorage.setItem("spotsLeft", spots);
     }
   }, 30000);
 
-  // Countdown
   function updateTimer() {
     const n = new Date().getTime();
     const m = new Date(); m.setHours(24,0,0,0);
@@ -167,7 +176,6 @@
   }
   setInterval(updateTimer,1000); updateTimer();
 
-  // Sales notifications
   const salesMessages = ["Someone in California just bought Lifetime All-Access!","Someone in Texas just grabbed Pro Pack","Another buyer from New York upgraded to Lifetime","Person in Florida just purchased Starter Pack"];
   function showSale() {
     const msg = salesMessages[Math.floor(Math.random()*salesMessages.length)];
@@ -184,7 +192,6 @@
   setTimeout(showSale, 8000);
   setInterval(showSale, Math.random()*10000 + 20000);
 
-  // Popup logic (desktop exit + mobile scroll 70%)
   let popupShown = false;
   document.addEventListener("mouseout", e => {
     if (!e.relatedTarget && !popupShown && window.innerWidth > 768) {
