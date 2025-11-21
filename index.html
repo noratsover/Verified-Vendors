@@ -8,30 +8,29 @@
     :root { --bg:#0f0f1a; --card:#1a1a2e; --accent:#8b5cf6; --accent2:#3b82f6; --text:#e2e8f0; --light:#94a3b8; }
     body { margin:0; font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
-    header { background:linear-gradient(135deg,#1e1b4b,#0f0f1a); text-align:center; padding:80px 20px; border-bottom:3px solid var(--accent); }
-    h1 { margin:0; font-size:3.5rem; font-weight:800; background:linear-gradient(90deg,#8b5cf6,#3b82f6); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
-    h2 { text-align:center; padding:50px 0 20px; font-size:2.2rem; color:var(--accent); }
+    header { background:linear-gradient(135deg,#1e1b4b,#0f0f1a); text-align:center; padding:100px 20px; border-bottom:3px solid var(--accent); }
+    h1 { margin:0; font-size:3.8rem; font-weight:800; background:linear-gradient(90deg,#8b5cf6,#3b82f6); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+    h2 { text-align:center; padding:50px 0 20px; font-size:2.3rem; color:var(--accent); }
     .container { max-width:1200px; margin:auto; padding:0 20px; }
-    .proof { background:rgba(139,92,246,0.15); border:1px solid var(--accent); padding:25px; border-radius:16px; text-align:center; margin:40px 0; font-size:1.1rem; }
-    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:30px; margin:50px 0; }
-    .card { background:var(--card); border-radius:20px; padding:35px 25px; text-align:center; box-shadow:0 10px 30px rgba(0,0,0,0.4); transition:all 0.4s; border:1px solid rgba(139,92,246,0.3); }
-    .card:hover { transform:translateY(-15px); box-shadow:0 20px 40px rgba(139,92,246,0.3); border-color:var(--accent); }
-    .price { font-size:3.5rem; font-weight:800; background:linear-gradient(90deg,#8b5cf6,#3b82f6); -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin:15px 0; }
-    .old-price { text-decoration:line-through; color:var(--light); font-size:1.2rem; }
-    .paypal-btn { margin:30px 0; height:60px; }
-    footer { background:#0a0a14; color:var(--light); text-align:center; padding:50px 20px; margin-top:80px; border-top:1px solid rgba(139,92,246,0.3); }
-    .tag { display:inline-block; background:rgba(139,92,246,0.3); padding:8px 20px; border-radius:50px; font-size:0.9rem; margin:10px; }
+    .proof { background:rgba(139,92,246,0.15); border:1px solid var(--accent); padding:28px; border-radius:16px; text-align:center; margin:40px 0; font-size:1.15rem; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(340px,1fr)); gap:35px; margin:60px 0; }
+    .card { background:var(--card); border-radius:20px; padding:40px 25px; text-align:center; box-shadow:0 12px 35px rgba(0,0,0,0.5); transition:all 0.4s; border:1px solid rgba(139,92,246,0.3); }
+    .card:hover { transform:translateY(-15px); box-shadow:0 25px 50px rgba(139,92,246,0.25); border-color:var(--accent); }
+    .price { font-size:4rem; font-weight:800; background:linear-gradient(90deg,#8b5cf6,#3b82f6); -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin:15px 0; }
+    .old-price { text-decoration:line-through; color:var(--light); font-size:1.3rem; }
+    .paypal-btn { margin:30px auto; width:280px; height:60px; } /* perfect clean size */
+    footer { background:#0a0a14; color:var(--light); text-align:center; padding:60px 20px; margin-top:100px; border-top:1px solid rgba(139,92,246,0.3); }
+    .tag { display:inline-block; background:rgba(139,92,246,0.3); padding:10px 24px; border-radius:50px; font-size:0.95rem; margin:10px; }
   </style>
+  <!-- PayPal SDK – loaded once at the top -->
+  <script src="https://www.paypal.com/sdk/js?client-id=BAAc06VF_RwKGeBXtv25JTdIb0j2hzWOreRefMjvvozFrWJWAlgGXMT-U8cLrOv4K6Hn9hrsD50lAtRn9c&components=hosted-buttons&enable-funding=venmo&currency=USD"></script>
 </head>
 <body>
-
-<!-- PayPal SDK – only load once -->
-<script src="https://www.paypal.com/sdk/js?client-id=BAAc06VF_RwKGeBXtv25JTdIb0j2hzWOreRefMjvvozFrWJWAlgGXMT-U8cLrOv4K6Hn9hrsD50lAtRn9c&components=hosted-buttons&enable-funding=venmo&currency=USD"></script>
 
 <header>
   <div class="container">
     <h1>VERIFIED VENDORS</h1>
-    <p style="font-size:1.6rem;margin-top:15px;opacity:0.9;">
+    <p style="font-size:1.7rem;margin-top:15px;opacity:0.9;">
       Premium Alibaba & 1688 Suppliers That Actually Ship Worldwide
     </p>
     <div class="tag">2025 Updated</div>
@@ -54,8 +53,8 @@
       <h3>Starter Pack</h3>
       <p>Clothing • Shoes • Accessories</p>
       <div class="price">$35</div>
-      <div class="old-price">$80</div>
-      <div class="paypal-btn" id="paypal-container-STARTER"></div>
+      <div class="old-price">$79</div>
+      <div class="paypal-btn" id="paypal-container-A4JGK2BPLVQQG"></div>
     </div>
 
     <!-- Pro Pack $50 -->
@@ -63,8 +62,8 @@
       <h3>Pro Pack</h3>
       <p>Everything in Starter + Moissanite • Watches • Electronics</p>
       <div class="price">$50</div>
-      <div class="old-price">$150</div>
-      <div class="paypal-btn" id="paypal-container-PRO"></div>
+      <div class="old-price">$149</div>
+      <div class="paypal-btn" id="paypal-container-ZZK58UXVGMN7W"></div>
     </div>
 
     <!-- Lifetime All-Access $100 -->
@@ -72,29 +71,24 @@
       <h3>Lifetime All-Access</h3>
       <p>Every supplier I ever add + Private Discord</p>
       <div class="price">$100</div>
-      <div class="old-price">$300</div>
-      <div class="paypal-btn" id="paypal-container-LIFETIME"></div>
+      <div class="old-price">$299</div>
+      <div class="paypal-btn" id="paypal-container-944N2GQY262HE"></div>
     </div>
 
   </div>
-
-  <p style="text-align:center; font-size:1.3rem; margin-top:50px;">
-    Instant delivery to your email in under 60 seconds<br>
-    PayPal • Venmo • Cards • Apple Pay accepted
-  </p>
 </div>
 
 <footer>
   <div class="container">
-    <p>100% real contacts • Reply to the delivery email if you have questions — I answer personally</p>
+    <p>100% real contacts • Instant delivery • Reply to the email if you have questions — I answer personally</p>
   </div>
 </footer>
 
-<!-- Render all three PayPal smart buttons -->
+<!-- Render all three buttons cleanly -->
 <script>
-  paypal.HostedButtons({ hostedButtonId: "A4JGK2BPLVQQG" }).render("#paypal-container-STARTER");   // $35
-  paypal.HostedButtons({ hostedButtonId: "ZZK58UXVGMN7W" }).render("#paypal-container-PRO");        // $50
-  paypal.HostedButtons({ hostedButtonId: "944N2GQY262HE" }).render("#paypal-container-LIFETIME");  // $100
+  paypal.HostedButtons({ hostedButtonId: "A4JGK2BPLVQQG" }).render("#paypal-container-A4JGK2BPLVQQG");
+  paypal.HostedButtons({ hostedButtonId: "ZZK58UXVGMN7W" }).render("#paypal-container-ZZK58UXVGMN7W");
+  paypal.HostedButtons({ hostedButtonId: "944N2GQY262HE" }).render("#paypal-container-944N2GQY262HE");
 </script>
 
 </body>
