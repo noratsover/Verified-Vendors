@@ -18,11 +18,11 @@
     .card:hover { transform:translateY(-15px); box-shadow:0 25px 50px rgba(139,92,246,0.25); border-color:var(--accent); }
     .price { font-size:4rem; font-weight:800; background:linear-gradient(90deg,#8b5cf6,#3b82f6); -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin:15px 0; }
     .old-price { text-decoration:line-through; color:var(--light); font-size:1.3rem; }
-    .paypal-btn { margin:30px auto; width:280px; height:60px; } /* perfect clean size */
+    .paypal-btn { margin:30px auto; width:280px; height:60px; }
     footer { background:#0a0a14; color:var(--light); text-align:center; padding:60px 20px; margin-top:100px; border-top:1px solid rgba(139,92,246,0.3); }
     .tag { display:inline-block; background:rgba(139,92,246,0.3); padding:10px 24px; border-radius:50px; font-size:0.95rem; margin:10px; }
   </style>
-  <!-- PayPal SDK – loaded once at the top -->
+  <!-- PayPal SDK – loaded once -->
   <script src="https://www.paypal.com/sdk/js?client-id=BAAc06VF_RwKGeBXtv25JTdIb0j2hzWOreRefMjvvozFrWJWAlgGXMT-U8cLrOv4K6Hn9hrsD50lAtRn9c&components=hosted-buttons&enable-funding=venmo&currency=USD"></script>
 </head>
 <body>
@@ -84,7 +84,7 @@
   </div>
 </footer>
 
-<!-- Render all three buttons cleanly -->
+<!-- Render all three clean buttons -->
 <script>
   paypal.HostedButtons({ hostedButtonId: "A4JGK2BPLVQQG" }).render("#paypal-container-A4JGK2BPLVQQG");
   paypal.HostedButtons({ hostedButtonId: "ZZK58UXVGMN7W" }).render("#paypal-container-ZZK58UXVGMN7W");
