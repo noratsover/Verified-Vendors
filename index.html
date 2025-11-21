@@ -18,11 +18,11 @@
     .card:hover { transform:translateY(-15px); box-shadow:0 25px 50px rgba(139,92,246,0.25); border-color:var(--accent); }
     .price { font-size:4rem; font-weight:800; background:linear-gradient(90deg,#8b5cf6,#3b82f6); -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin:15px 0; }
     .old-price { text-decoration:line-through; color:var(--light); font-size:1.3rem; }
-    .paypal-btn { margin:30px auto; width:280px; height:60px; }
+    .paypal-btn { margin:30px auto; width:280px; height:60px; } /* Clean, centered button space */
     footer { background:#0a0a14; color:var(--light); text-align:center; padding:60px 20px; margin-top:100px; border-top:1px solid rgba(139,92,246,0.3); }
     .tag { display:inline-block; background:rgba(139,92,246,0.3); padding:10px 24px; border-radius:50px; font-size:0.95rem; margin:10px; }
   </style>
-  <!-- PayPal SDK – loaded once -->
+  <!-- PayPal SDK – loaded once, with explicit wait for buttons -->
   <script src="https://www.paypal.com/sdk/js?client-id=BAAc06VF_RwKGeBXtv25JTdIb0j2hzWOreRefMjvvozFrWJWAlgGXMT-U8cLrOv4K6Hn9hrsD50lAtRn9c&components=hosted-buttons&enable-funding=venmo&currency=USD"></script>
 </head>
 <body>
@@ -76,6 +76,11 @@
     </div>
 
   </div>
+
+  <p style="text-align:center; font-size:1.3rem; margin-top:50px;">
+    Instant delivery to your email in under 60 seconds<br>
+    PayPal • Venmo • Cards • Apple Pay accepted
+  </p>
 </div>
 
 <footer>
@@ -84,11 +89,31 @@
   </div>
 </footer>
 
-<!-- Render all three clean buttons -->
+<!-- Bulletproof render script – waits for full load, retries if needed -->
 <script>
-  paypal.HostedButtons({ hostedButtonId: "A4JGK2BPLVQQG" }).render("#paypal-container-A4JGK2BPLVQQG");
-  paypal.HostedButtons({ hostedButtonId: "ZZK58UXVGMN7W" }).render("#paypal-container-ZZK58UXVGMN7W");
-  paypal.HostedButtons({ hostedButtonId: "944N2GQY262HE" }).render("#paypal-container-944N2GQY262HE");
+  window.addEventListener('load', function() {
+    // Render Starter
+    if (window.paypal && paypal.HostedButtons) {
+      paypal.HostedButtons({ hostedButtonId: "A4JGK2BPLVQQG" }).render("#paypal-container-A4JGK2BPLVQQG").catch(e => console.log('Starter button error:', e));
+    }
+    
+    // Render Pro
+    if (window.paypal && paypal.HostedButtons) {
+      paypal.HostedButtons({ hostedButtonId: "ZZK58UXVGMN7W" }).render("#paypal-container-ZZK58UXVGMN7W").catch(e => console.log('Pro button error:', e));
+    }
+    
+    // Render Lifetime
+    if (window.paypal && paypal.HostedButtons) {
+      paypal.HostedButtons({ hostedButtonId: "944N2GQY262HE" }).render("#paypal-container-944N2GQY262HE").catch(e => console.log('Lifetime button error:', e));
+    }
+    
+    // Fallback retry after 2 seconds if buttons didn't load
+    setTimeout(() => {
+      if (document.querySelector('#paypal-container-A4JGK2BPLVQQG').innerHTML === '') {
+        location.reload(); // Soft refresh to try again
+      }
+    }, 2000);
+  });
 </script>
 
 </body>
