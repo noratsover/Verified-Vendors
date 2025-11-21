@@ -9,11 +9,7 @@
     body {margin:0; font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); line-height:1.6; overflow-x:hidden;}
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
 
-    .coupon-banner {
-      background:var(--red); color:white; text-align:center; padding:14px; font-weight:bold; font-size:1.25rem;
-      position:fixed; top:0; left:0; width:100%; z-index:9999; cursor:pointer;
-      animation:pulse 2s infinite; opacity:1; transition:opacity 0.8s ease;
-    }
+    .coupon-banner {background:var(--red); color:white; text-align:center; padding:14px; font-weight:bold; font-size:1.25rem; position:fixed; top:0; left:0; width:100%; z-index:9999; animation:pulse 2s infinite; cursor:pointer; opacity:1; transition:opacity 0.8s ease;}
     @keyframes pulse {0%,100%{transform:scale(1)} 50%{transform:scale(1.03)}}
 
     .sales-desktop {position:fixed; top:70px; left:50%; transform:translateX(-50%); background:#1a1a2e; color:white; padding:18px 50px; border-radius:16px; border:3px solid var(--accent); box-shadow:0 15px 40px rgba(0,0,0,0.7); font-size:1.5rem; font-weight:700; z-index:9998; opacity:0; transition:opacity 1.5s ease;}
@@ -151,6 +147,7 @@
   </div>
 </div>
 
+<!-- POPUP — “No thanks” button FIXED -->
 <div id="exitPopup">
   <div class="exit-box">
     <h3>WAIT — Don’t Miss Out!</h3>
@@ -158,10 +155,11 @@
     <form action="https://www.paypal.com/ncp/payment/944N2GQY262HE" method="post" target="_blank">
       <input type="submit" value="YES! Lock In Lifetime for $100 Now">
     </form>
-    <p style="margin-top:20px; cursor:pointer; color:#888;" onclick="document.getElementById('exitPopup').style.display='none'';">No thanks, I'll pay more later</p>
+    <p style="margin-top:20px; cursor:pointer; color:#888;" onclick="document.getElementById('exitPopup').style.display='none'">No thanks, I'll pay more later</p>
   </div>
 </div>
 
+<!-- MOBILE BAR — PERFECT SCROLL -->
 <div class="mobile-bar" onclick="scrollToPricing()">
   <strong>Tap Here → Lifetime Only $100</strong><br>
   <small>(Price Rising Soon)</small>
@@ -170,11 +168,11 @@
 <footer><div class="container"><p>100% real contacts • Instant delivery • Reply to the email if you have questions — I answer personally</p></div></footer>
 
 <script>
-  // UNIVERSAL SMOOTH SCROLL — WORKS 100% ON MOBILE & DESKTOP
+  // PERFECT SCROLL — WORKS IDENTICALLY ON MOBILE & DESKTOP
   function scrollToPricing() {
     const header = document.getElementById('pricing-header');
-    const bannerHeight = document.getElementById('flashBanner').offsetHeight;
-    const extraOffset = window.innerWidth > 768 ? 100 : 90;  // Slightly lower on desktop
+    const bannerHeight = document.getElementById('flashBanner').offsetHeight || 60;
+    const extraOffset = window.innerWidth > 768 ? 100 : 90;
     const y = header.getBoundingClientRect().top + window.pageYOffset - bannerHeight - extraOffset;
 
     window.scrollTo({ top: y, behavior: 'smooth' });
@@ -190,7 +188,7 @@
     setTimeout(() => { banner.style.opacity = '1'; }, 30000);
   }
 
-  // ALL OTHER SCRIPTS (unchanged)
+  // ALL OTHER SCRIPTS (spots, countdown, sales, popup) — unchanged
   let spots = parseInt(localStorage.getItem("spotsLeft")) || 12;
   document.getElementById("spots-left").textContent = spots;
   setInterval(() => {
