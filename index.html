@@ -5,53 +5,67 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Verified Vendors | Premium Reseller Suppliers 2025</title>
   <style>
-    :root {--bg:#0f0f1a; --card:#1a1a2e; --accent:#8b5cf6; --accent2:#3b82f6; --text:#e2e8f0; --light:#94a3b8; --red:#ff4444;}
+    :root {--bg:#0f0f1a; --card:#1a1a2e; --accent:#8b5cf6; --text:#e2e8f0; --light:#94a3b8; --red:#ff4444;}
     body {margin:0; font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); line-height:1.6; overflow-x:hidden;}
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
 
-    /* FLASH COUPON BANNER */
-    .coupon-banner {background:var(--red); color:white; text-align:center; padding:14px; font-weight:bold; font-size:1.25rem; animation:pulse 2s infinite;}
+    /* FLASH BANNER */
+    .coupon-banner {background:var(--red); color:white; text-align:center; padding:14px; font-weight:bold; font-size:1.25rem; position:fixed; top:0; left:0; width:100%; z-index:9999; animation:pulse 2s infinite;}
     @keyframes pulse {0%,100%{transform:scale(1)} 50%{transform:scale(1.03)}}
 
-    /* BIG RECENT SALES NOTIFICATION (under banner) */
-    .sales-notification {
-      position:fixed; top:60px; left:50%; transform:translateX(-50%);
-      background:#1a1a2e; color:white; padding:18px 40px; border-radius:16px;
-      border:3px solid #8b5cf6; box-shadow:0 15px 40px rgba(0,0,0,0.7);
-      font-size:1.4rem; font-weight:700; z-index:9999; opacity:0;
-      transition:opacity 1.2s ease, transform 1.2s ease;
-    }
-    .sales-notification.show {opacity:1; transform:translateX(-50%) translateY(10px);}
+    /* BIG RECENT SALES NOTIFICATION */
+    .sales-notification {position:fixed; top:70px; left:50%; transform:translateX(-50%); background:#1a1a2e; color:white; padding:18px 50px; border-radius:16px; border:3px solid var(--accent); box-shadow:0 15px 40px rgba(0,0,0,0.7); font-size:1.5rem; font-weight:700; z-index:9998; opacity:0; transition:opacity 1.5s ease;}
+    .sales-notification.show {opacity:1;}
 
-    header {background:linear-gradient(135deg,#1e1b4b,#0f0f1a); text-align:center; padding:90px 20px 50px; border-bottom:3px solid var(--accent);}
+    header {background:linear-gradient(135deg,#1e1b4b,#0f0f1a); text-align:center; padding:120px 20px 60px; border-bottom:3px solid var(--accent);}
     h1 {margin:0; font-size:3.8rem; font-weight:800; background:linear-gradient(90deg,#8b5cf6,#3b82f6); -webkit-background-clip:text; -webkit-text-fill-color:transparent;}
     h2 {text-align:center; padding:50px 0 20px; font-size:2.4rem; color:var(--accent);}
     .container {max-width:1200px; margin:auto; padding:0 20px;}
 
-    .urgency {background:rgba(139,92,246,0.25); border:3px solid #8b5cf6; border-radius:16px; padding:20px; max-width:800px; margin:30px auto; text-align:center;}
-    #countdown {font-size:2.8rem; font-weight:800; color:#8b5cf6; letter-spacing:5px;}
+    .urgency {background:rgba(139,92,246,0.25); border:3px solid var(--accent); border-radius:16px; padding:25px; max-width:800px; margin:30px auto; text-align:center;}
+    #countdown {font-size:2.8rem; font-weight:800; color:var(--accent); letter-spacing:5px;}
     .spots {font-size:1.6rem; color:#ff6b6b; font-weight:900; margin-top:12px; animation:blink 1.8s infinite;}
     @keyframes blink {0%,100%{opacity:1} 50%{opacity:0.6}}
 
-    /* rest of your styles (pricing cards, testimonials, etc.) unchanged – keeping them exactly as before */
+    .proof {background:rgba(139,92,246,0.15); border:1px solid var(--accent); padding:28px; border-radius:16px; text-align:center; margin:40px 0;}
+
+    /* TESTIMONIALS (text only) */
+    .testimonials {margin:90px 0;}
+    .testimonial-grid {display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:30px;}
+    .testimonial {background:var(--card); border-radius:16px; padding:30px; border:2px solid rgba(139,92,246,0.5); font-style:italic; line-height:1.7;}
+
+    .guarantee {text-align:center; margin:70px 0;}
+    .guarantee-box {background:#000; border:4px solid gold; border-radius:20px; padding:30px; max-width:600px; margin:auto; font-size:1.5rem; font-weight:bold; color:gold;}
+
     .grid {display:grid; grid-template-columns:repeat(auto-fit,minmax(340px,1fr)); gap:40px; margin:80px 0;}
     .card {background:var(--card); border-radius:20px; padding:40px 25px; text-align:center; box-shadow:0 15px 40px rgba(0,0,0,0.6); transition:0.4s; border:2px solid transparent;}
-    .card:hover {transform:translateY(-20px); border-color:var(--accent);}
+    .card:hover, .card.highlight {transform:translateY(-20px); border-color:var(--accent); box-shadow:0 25px 50px rgba(139,92,246,0.4);}
     .price {font-size:4.5rem; font-weight:800; background:linear-gradient(90deg,#8b5cf6,#3b82f6); -webkit-background-clip:text; -webkit-text-fill-color:transparent;}
     .old-price {text-decoration:line-through; color:var(--light); font-size:1.4rem;}
     .buy-btn form {all:unset;}
-    .mobile-bar {display:none; position:fixed; bottom:0; left:0; width:100%; background:linear-gradient(135deg,#8b5cf6,#3b82f6); color:white; padding:18px; text-align:center; font-size:1.3rem; font-weight:bold; z-index:997;}
-    @media (max-width:768px) {.mobile-bar{display:block;}}
+
+    .faq {margin:100px 0; max-width:900px; margin-left:auto; margin-right:auto;}
+    .faq-item {background:var(--card); border-radius:12px; padding:20px; margin:12px 0; cursor:pointer;}
+    .faq-answer {display:none; padding-top:15px; color:var(--light);}
+
+    /* EXIT INTENT */
+    #exitPopup {display:none; position:fixed; inset:0; background:rgba(0,0,0,0.95); z-index:10000; align-items:center; justify-content:center;}
+    .exit-box {background:#111; border:5px solid var(--accent); border-radius:20px; padding:40px; text-align:center; max-width:420px;}
+    .exit-box input[type=submit] {background:var(--accent); color:white; border:none; padding:18px 50px; border-radius:50px; font-size:1.4rem; cursor:pointer;}
+
+    /* MOBILE STICKY BAR */
+    .mobile-bar {display:none; position:fixed; bottom:0; left:0; width:100%; background:linear-gradient(135deg,var(--accent),#3b82f6); color:white; padding:18px; text-align:center; font-size:1.4rem; font-weight:bold; z-index:997; cursor:pointer;}
+    @media (max-width:768px) {.mobile-bar{display:block;} header{padding-top:150px;}}
+
+    footer {background:#0a0a14; color:var(--light); text-align:center; padding:70px 20px; border-top:1px solid rgba(139,92,246,0.3);}
   </style>
 </head>
 <body>
 
-<!-- FLASH COUPON BANNER -->
 <div class="coupon-banner">
   FLASH15 = 15% OFF NEXT 24H ONLY
 </div>
 
-<!-- BIG RECENT SALES NOTIFICATION -->
 <div class="sales-notification" id="salesNotification"></div>
 
 <header>
@@ -66,7 +80,7 @@
     </div>
 
     <div class="urgency">
-      <div style="font-size:1.5rem;font-weight:700;">Current Price Ends In...</div>
+      <div style="font-size:1.5rem;font-weight:700;">Price Increases In...</div>
       <div id="countdown">23h 59m 59s</div>
       <div class="spots">Only <span id="spots-left">9</span> spots left at this price!</div>
     </div>
@@ -74,11 +88,28 @@
 </header>
 
 <div class="container">
-  <!-- Your pricing cards, testimonials, FAQ, etc. (unchanged – keeping the exact ones from the nuclear version) -->
-  <!-- I'll paste just the pricing section to keep this readable – full code is identical to previous nuclear version -->
+  <div class="proof">
+    <strong>Real Reseller Since 2023</strong> — 400+ students quit their 9-5 with these exact contacts<br>
+    Zero dead WeChat IDs. I still order weekly.
+  </div>
+
+  <!-- TESTIMONIALS (text only) -->
+  <div class="testimonials">
+    <h2>What Buyers Are Saying</h2>
+    <div class="testimonial-grid">
+      <div class="testimonial">“Best $35 I ever spent. Made it back in 3 days.” — Marcus T.</div>
+      <div class="testimonial">“Moissanite supplier alone is worth 20× the price.” — Alex R.</div>
+      <div class="testimonial">“First list with 100% live contacts. Upgraded same day.” — Sarah K.</div>
+    </div>
+  </div>
+
+  <div class="guarantee">
+    <div class="guarantee-box">7-Day Money-Back Guarantee<br><span style="font-size:1.1rem;">Love it or full refund — no questions</span></div>
+  </div>
 
   <h2>Choose Your Access Level</h2>
-  <div class="grid">
+  <div class="grid" id="pricing">
+    <!-- Your three perfect PayPal cards -->
     <div class="card">
       <h3>Starter Pack</h3>
       <p>Clothing • Shoes • Accessories</p>
@@ -92,6 +123,7 @@
         </form>
       </div>
     </div>
+
     <div class="card">
       <h3>Pro Pack</h3>
       <p>Everything in Starter + Moissanite • Watches • Electronics</p>
@@ -105,7 +137,8 @@
         </form>
       </div>
     </div>
-    <div class="card">
+
+    <div class="card" id="lifetime-card">
       <h3>Lifetime All-Access</h3>
       <p>Every supplier I ever add + Private Discord</p>
       <div class="price">$100</div>
@@ -120,18 +153,42 @@
     </div>
   </div>
 
-  <!-- Mobile sticky bar -->
-  <div class="mobile-bar">
-    Tap Here → Lifetime Only $100 (Price Rising Soon)
+  <!-- FAQ -->
+  <div class="faq">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item" onclick="this.querySelector('.faq-answer').style.display = this.querySelector('.faq-answer').style.display==='block'?'none':'block'"><strong>Is this another dead list?</strong><div class="faq-answer">No. I order from every supplier weekly. Dead contact = instant refund.</div></div>
+    <div class="faq-item" onclick="this.querySelector('.faq-answer').style.display = this.querySelector('.faq-answer').style.display==='block'?'none':'block'"><strong>How fast is delivery?</strong><div class="faq-answer">Instant — under 60 seconds after payment.</div></div>
+    <div class="faq-item" onclick="this.querySelector('.faq-answer').style.display = this.querySelector('.faq-answer').style.display==='block'?'none':'block'"><strong>Do you offer refunds?</strong><div class="faq-answer">Yes — 7 days, no questions asked.</div></div>
   </div>
 </div>
 
-<script>
-  // Persistent scarcity (never resets on reload)
-  let spots = parseInt(localStorage.getItem("spotsLeft")) || 12;
-  if (spots < 4) spots = 12; // safety reset only if somehow broken
-  document.getElementById("spots-left").textContent = spots;
+<!-- EXIT INTENT -->
+<div id="exitPopup">
+  <div class="exit-box">
+    <h3>WAIT — Don't Miss Out!</h3>
+    <p style="font-size:1.3rem;margin:20px 0;">Get <strong>15% OFF</strong> with code <span style="color:var(--accent);">FLASH15</span> if you order now!</p>
+    <form action="chip" method="post" target="_blank">
+      <input type="submit" value="Yes! Give Me 15% Off">
+    </form>
+    <p style="margin-top:20px; cursor:pointer; color:#888;" onclick="document.getElementById('exitPopup').style.display='none'">No thanks</p>
+  </div>
+</div>
 
+<!-- MOBILE STICKY BAR (clickable) -->
+<div class="mobile-bar" onclick="document.getElementById('pricing').scrollIntoView(); document.getElementById('lifetime-card').classList.add('highlight'); setTimeout(()=>document.getElementById('lifetime-card').classList.remove('highlight'),3000);">
+  Tap Here → Lifetime Only $100 (Price Rising Soon)
+</div>
+
+<footer>
+  <div class="container">
+    <p>100% real contacts • Instant delivery • Reply to the email if you have questions — I answer personally</p>
+  </div>
+</footer>
+
+<script>
+  // Persistent spots
+  let spots = parseInt(localStorage.getItem("spotsLeft")) || 12;
+  document.getElementById("spots-left").textContent = spots;
   setInterval(() => {
     if (Math.random() < 0.4 && spots > 4) {
       spots--;
@@ -146,28 +203,31 @@
     const m = new Date(); m.setHours(24,0,0,0);
     const d = m - n;
     const h = Math.floor(d/(1000*60*60));
-    const m_ = Math.floor((d%(1000*60*60))/(1000*60));
+    const mm = Math.floor((d%(1000*60*60))/(1000*60));
     const s = Math.floor((d%(1000*60))/1000);
-    document.getElementById("countdown").innerHTML = h+"h "+m_+"m "+s+"s";
+    document.getElementById("countdown").innerHTML = h+"h "+mm+"m "+s+"s";
   }
   setInterval(updateTimer,1000); updateTimer();
 
-  // Big centered recent sales (12 seconds visible)
-  const salesMessages = [
-    "Someone in California just bought Lifetime All-Access!",
-    "Someone in Texas just grabbed the Pro Pack",
-    "Another buyer from New York upgraded to Lifetime",
-    "Person in Florida just purchased Starter Pack"
-  ];
-  function showBigSale() {
+  // Big sales notification
+  const salesMessages = ["Someone in California just bought Lifetime All-Access!","Someone in Texas just grabbed Pro Pack","Another buyer from New York upgraded to Lifetime","Person in Florida just purchased Starter Pack"];
+  function showSale() {
     const el = document.getElementById("salesNotification");
     el.textContent = salesMessages[Math.floor(Math.random()*salesMessages.length)];
     el.classList.add("show");
     setTimeout(() => el.classList.remove("show"), 12000);
   }
-  // Show first one after 8 seconds, then every 20–30 seconds
-  setTimeout(showBigSale, 8000);
-  setInterval(showBigSale, Math.random()*10000 + 20000);
+  setTimeout(showSale, 8000);
+  setInterval(showSale, Math.random()*10000 + 20000);
+
+  // Exit intent (desktop only)
+  let shown = false;
+  document.addEventListener("mouseout", e => {
+    if (!e.relatedTarget && !shown && window.innerWidth > 768) {
+      shown = true;
+      document.getElementById("exitPopup").style.display = "flex";
+    }
+  });
 </script>
 </body>
 </html>
