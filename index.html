@@ -9,12 +9,7 @@
     body {margin:0; font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); line-height:1.6; overflow-x:hidden;}
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
 
-    /* TOP BANNER – now clickable on desktop too */
-    .coupon-banner {
-      background:var(--red); color:white; text-align:center; padding:14px; font-weight:bold; font-size:1.25rem;
-      position:fixed; top:0; left:0; width:100%; z-index:9999; animation:pulse 2s infinite;
-      cursor:pointer;
-    }
+    .coupon-banner {background:var(--red); color:white; text-align:center; padding:14px; font-weight:bold; font-size:1.25rem; position:fixed; top:0; left:0; width:100%; z-index:9999; animation:pulse 2s infinite; cursor:pointer;}
     @keyframes pulse {0%,100%{transform:scale(1)} 50%{transform:scale(1.03)}}
 
     .sales-desktop {position:fixed; top:70px; left:50%; transform:translateX(-50%); background:#1a1a2e; color:white; padding:18px 50px; border-radius:16px; border:3px solid var(--accent); box-shadow:0 15px 40px rgba(0,0,0,0.7); font-size:1.5rem; font-weight:700; z-index:9998; opacity:0; transition:opacity 1.5s ease;}
@@ -51,15 +46,34 @@
     .exit-box {background:#111; border:5px solid var(--accent); border-radius:20px; padding:40px; text-align:center; max-width:420px;}
     .exit-box input[type=submit] {background:var(--accent); color:white; border:none; padding:18px 50px; border-radius:50px; font-size:1.4rem; cursor:pointer;}
 
-    .mobile-bar {display:none; position:fixed; bottom:0; left:0; width:100%; background:linear-gradient(135deg,var(--accent),#3b82f6); color:white; padding:12px 16px; text-align:center; font-size:1.1rem; font-weight:800; z-index:997; cursor:pointer; box-shadow:0 -4px 20px rgba(0,0,0,0.4); line-height:1.3;}
-    @media (max-width:768px) {.mobile-bar{display:block;} header{padding-top:150px;}}
+    /* PERFECTLY CENTERED & NO CUTOFF MOBILE BAR */
+    .mobile-bar {
+      display:none;
+      position:fixed;
+      bottom:0; left:0; width:100%;
+      background:linear-gradient(135deg,var(--accent),#3b82f6);
+      color:white;
+      padding:11px 16px;
+      text-align:center;
+      font-size:1.05rem;
+      font-weight:800;
+      line-height:1.4;
+      z-index:997;
+      cursor:pointer;
+      box-shadow:0 -4px 20px rgba(0,0,0,0.4);
+    }
+    .mobile-bar strong {font-size:1.15rem;}
+    .mobile-bar small {font-size:0.88rem; font-weight:600; opacity:0.95;}
+    @media (max-width:768px) {
+      .mobile-bar {display:block;}
+      header {padding-top:150px;}
+    }
 
     footer {background:#0a0a14; color:var(--light); text-align:center; padding:70px 20px; border-top:1px solid rgba(139,92,246,0.3);}
   </style>
 </head>
 <body>
 
-<!-- CLICKABLE TOP BANNER → scrolls + highlights Lifetime card -->
 <div class="coupon-banner" onclick="document.getElementById('lifetime-card').scrollIntoView({behavior:'smooth'}); document.getElementById('lifetime-card').classList.add('highlight'); setTimeout(()=>document.getElementById('lifetime-card').classList.remove('highlight'),3000);">
   FLASH15 = 15% OFF NEXT 24H ONLY
 </div>
@@ -133,7 +147,6 @@
   </div>
 </div>
 
-<!-- POPUP (desktop exit + mobile scroll) -->
 <div id="exitPopup">
   <div class="exit-box">
     <h3>WAIT — Don’t Miss Out!</h3>
@@ -145,23 +158,20 @@
   </div>
 </div>
 
-<!-- MOBILE BAR + DESKTOP BANNER both point to Lifetime + flash it -->
+<!-- PERFECT MOBILE BAR — NO CUTOFF, PERFECTLY CENTERED -->
 <div class="mobile-bar" onclick="document.getElementById('lifetime-card').scrollIntoView({behavior:'smooth'}); document.getElementById('lifetime-card').classList.add('highlight'); setTimeout(()=>document.getElementById('lifetime-card').classList.remove('highlight'),3000);">
-  Tap Here → Lifetime Only $100 (Price Rising Soon)
+  <strong>Tap Here → Lifetime Only $100</strong><br>
+  <small>(Price Rising Soon)</small>
 </div>
 
 <footer><div class="container"><p>100% real contacts • Instant delivery • Reply to the email if you have questions — I answer personally</p></div></footer>
 
 <script>
-  // All your existing scripts (spots, countdown, sales, popup) — unchanged
-
   let spots = parseInt(localStorage.getItem("spotsLeft")) || 12;
   document.getElementById("spots-left").textContent = spots;
   setInterval(() => {
-    if (Math.random() <  musk 0.4 && spots > 4) {
-      spots--;
-      document.getElementById("spots-left").textContent = spots;
-      localStorage.setItem("spotsLeft", spots);
+    if (Math.random() < 0.4 && spots > 4) {
+      spots--; document.getElementById("spots-left").textContent = spots; localStorage.setItem("spotsLeft", spots);
     }
   }, 30000);
 
@@ -194,13 +204,13 @@
 
   let popupShown = false;
   document.addEventListener("mouseout", e => {
-    if (!e.relatedTarget && !popupShown && window.innerWidth > 768) {
+    if (!e.relatedTarget && !popupShown) {
       popupShown = true;
       document.getElementById("exitPopup").style.display = "flex";
     }
   });
   window.addEventListener("scroll", () => {
-    if (popupShown || window.innerWidth > 768) return;
+    if (popupShown) return;
     const percent = (window.scrollY + window.innerHeight) / document.body.scrollHeight;
     if (percent > 0.70) {
       popupShown = true;
