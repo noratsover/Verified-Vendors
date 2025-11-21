@@ -9,7 +9,7 @@
     body {margin:0; font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); line-height:1.6; overflow-x:hidden;}
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
 
-    /* RED FLASH15 BANNER — BIG & BOLD AGAIN */
+    /* RED FLASH15 — BIG & ON TOP AGAIN */
     .coupon-banner {
       background:var(--red); color:white; text-align:center; padding:14px; font-weight:bold; font-size:1.3rem;
       position:fixed; top:0; left:0; width:100%; z-index:9999; cursor:pointer;
@@ -17,7 +17,7 @@
     }
     @keyframes pulse {0%,100%{transform:scale(1)} 50%{transform:scale(1.03)}}
 
-    /* TRUST BAR — CLEAN & ON TOP */
+    /* TRUST BAR — BELOW RED BANNER */
     .trust-bar {
       background:#1a1a2e; padding:12px 0; overflow:hidden; white-space:nowrap; border-bottom:2px solid rgba(139,92,246,0.4);
       position:fixed; top:50px; left:0; width:100%; z-index:9998;
@@ -38,10 +38,10 @@
 
     .urgency {background:rgba(139,92,246,0.25); border:3px solid var(--accent); border-radius:16px; padding:25px; max-width:800px; margin:30px auto; text-align:center;}
     #countdown {font-size:2.8rem; font-weight:800; color:var(--accent); letter-spacing:5px;}
-    .spots {font-size:1.6rem; color:#ff6b6b; font-weight:900; margin-top:12px; animation:blink 1.8s infinite;}
+    .spots {font რე:1.6rem; color:#ff6b6b; font-weight:900; margin-top:12px; animation:blink 1.8s infinite;}
     @keyframes blink {0%,100%{opacity:1} 50%{opacity:0.6}}
 
-    .proof,.testimonials,.guarantee,.faq {margin:70px 0;}
+    .proof,.testimonials,.guarantee {margin:70px 0;}
     .testimonial-grid {display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:30px;}
     .testimonial {background:var(--card); border-radius:16px; padding:30px; border:2px solid rgba(139,92,246,0.5); font-style:italic; line-height:1.7;}
     .guarantee-box {background:#000; border:4px solid gold; border-radius:20px; padding:30px; max-width:600px; margin:auto; font-size:1.5rem; font-weight:bold; color:gold; text-align:center;}
@@ -66,7 +66,7 @@
     .old-price {text-decoration:line-through; color:var(--light); font-size:1.4rem;}
     .buy-btn form {all:unset;}
 
-    /* FAQ — FIXED BROWN BUG + SMOOTH DROPDOWN ARROW */
+    /* FAQ — NO ARROWS, HOVER/TAP DROPDOWN, NO GLITCH */
     .faq {margin:100px 0; max-width:900px; margin-left:auto; margin-right:auto;}
     .faq h2 {font-size:2.6rem; margin-bottom:40px;}
     .faq-item {
@@ -74,17 +74,13 @@
       border:2px solid rgba(139,92,246,0.3); transition:all 0.4s ease;
     }
     .faq-question {
-      padding:25px; cursor:pointer; display:flex; justify-content:space-between; align-items:center;
-      font-weight:700; font-size:1.25rem; background:rgba(139,92,246,0.1);
+      padding:25px; cursor:pointer; font-weight:700; font-size:1.25rem;
+      background:rgba(139,92,246,0.1); transition:background 0.3s;
     }
     .faq-question:hover {background:rgba(139,92,246,0.2);}
-    .faq-question::after {
-      content:"↓"; font-size:1.8rem; transition:transform 0.4s ease; color:var(--accent);
-    }
-    .faq-item.active .faq-question::after {transform:rotate(180deg);}
     .faq-answer {
-      padding:0 25px 25px; max-height:0; overflow:hidden; transition:max-height 0.5s ease, padding 0.5s ease;
-      font-size:1.1rem; line-height:1.8; color:var(--light);
+      max-height:0; overflow:hidden; transition:max-height 0.5s ease, padding 0.5s ease;
+      padding:0 25px; font-size:1.1rem; line-height:1.8; color:var(--light);
     }
     .faq-item.active .faq-answer {max-height:500px; padding:20px 25px 30px;}
 
@@ -259,10 +255,25 @@
 <footer><div class="container"><p>100% real contacts • Instant delivery • Reply to the email if you have questions — I answer personally</p></div></footer>
 
 <script>
-  // FAQ TOGGLE WITH ARROW ROTATION
+  // FAQ — HOVER (DESKTOP) + TAP (MOBILE) DROPDOWN (NO ARROWS, NO GLITCH)
   document.querySelectorAll('.faq-item').forEach(item => {
-    item.querySelector('.faq-question').addEventListener('click', () => {
-      item.classList.toggle('active');
+    const question = item.querySelector('.faq-question');
+    const answer = item.querySelector('.faq-answer');
+
+    // Hover for desktop
+    item.addEventListener('mouseenter', () => {
+      if (window.innerWidth > 768) item.classList.add('active');
+    });
+    item.addEventListener('mouseleave', () => {
+      if (window.innerWidth > 768) item.classList.remove('active');
+    });
+
+    // Tap for mobile
+    question.addEventListener('click', (e) => {
+      if (window.innerWidth <= 768) {
+        e.preventDefault();
+        item.classList.toggle('active');
+      }
     });
   });
 
