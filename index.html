@@ -9,20 +9,29 @@
     body {margin:0; font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); line-height:1.6; overflow-x:hidden;}
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
 
-    .coupon-banner {background:var(--red); color:white; text-align:center; padding:14px; font-weight:bold; font-size:1.25rem; position:fixed; top:0; left:0; width:100%; z-index:9999; animation:pulse 2s infinite; cursor:pointer; opacity:1; transition:opacity 0.8s ease;}
+    /* RED FLASH15 BANNER — BIG & BOLD AGAIN */
+    .coupon-banner {
+      background:var(--red); color:white; text-align:center; padding:14px; font-weight:bold; font-size:1.3rem;
+      position:fixed; top:0; left:0; width:100%; z-index:9999; cursor:pointer;
+      animation:pulse 2s infinite; opacity:1; transition:opacity 0.8s ease;
+    }
     @keyframes pulse {0%,100%{transform:scale(1)} 50%{transform:scale(1.03)}}
 
-    .trust-bar {background:#1a1a2e; padding:12px 0; overflow:hidden; white-space:nowrap; border-bottom:2px solid rgba(139,92,246,0.4); position:fixed; top:0; left:0; width:100%; z-index:9999;}
+    /* TRUST BAR — CLEAN & ON TOP */
+    .trust-bar {
+      background:#1a1a2e; padding:12px 0; overflow:hidden; white-space:nowrap; border-bottom:2px solid rgba(139,92,246,0.4);
+      position:fixed; top:50px; left:0; width:100%; z-index:9998;
+    }
     .scroll-text {display:inline-block; animation:scroll-left 45s linear infinite; font-size:1.15rem; font-weight:600;}
     .scroll-text:hover {animation-play-state:paused;}
     @keyframes scroll-left {0% {transform:translateX(100%);} 100% {transform:translateX(-100%);}}
 
-    .sales-desktop {position:fixed; top:70px; left:50%; transform:translateX(-50%); background:#1a1a2e; color:white; padding:18px 50px; border-radius:16px; border:3px solid var(--accent); box-shadow:0 15px 40px rgba(0,0,0,0.7); font-size:1.5rem; font-weight:700; z-index:9998; transitioning:opacity 1.5s ease;}
+    .sales-desktop {position:fixed; top:120px; left:50%; transform:translateX(-50%); background:#1a1a2e; color:white; padding:18px 50px; border-radius:16px; border:3px solid var(--accent); box-shadow:0 15px 40px rgba(0,0,0,0.7); font-size:1.5rem; font-weight:700; z-index:9997; opacity:0; transition:opacity 1.5s ease;}
     .sales-desktop.show {opacity:1;}
-    .sales-mobile {position:fixed; bottom:80px; left:15px; background:#1a1a2e; color:white; padding:12px 18px; border-radius:12px; border-left:4px solid var(--accent); font-size:0.95rem; font-weight:600; z-index:9998; opacity:0; transform:translateY(20px); transition:all 0.6s;}
+    .sales-mobile {position:fixed; bottom:80px; left:15px; background:#1a1a2e; color:white; padding:12px 18px; border-radius:12px; border-left:4px solid var(--accent); font-size:0.95rem; font-weight:600; z-index:9997; opacity:0; transform:translateY(20px); transition:all 0.6s;}
     .sales-mobile.show {opacity:1; transform:translateY(0);}
 
-    header {background:linear-gradient(135deg,#1e1b4b,#0f0f1a); text-align:center; padding:140px 20px 60px; border-bottom:3px solid var(--accent);}
+    header {background:linear-gradient(135deg,#1e1b4b,#0f0f1a); text-align:center; padding:170px 20px 60px; border-bottom:3px solid var(--accent);}
     h1 {margin:0; font-size:3.2rem; font-weight:800; background:linear-gradient(90deg,#8b5cf6,#3b82f6); -webkit-background-clip:text; -webkit-text-fill-color:transparent;}
     h2 {text-align:center; padding:50px 0 20px; font-size:2.4rem; color:var(--accent);}
     .container {max-width:1200px; margin:auto; padding:0 20px;}
@@ -32,7 +41,7 @@
     .spots {font-size:1.6rem; color:#ff6b6b; font-weight:900; margin-top:12px; animation:blink 1.8s infinite;}
     @keyframes blink {0%,100%{opacity:1} 50%{opacity:0.6}}
 
-    .proof,.testimonials,.guarantee {margin:70px 0;}
+    .proof,.testimonials,.guarantee,.faq {margin:70px 0;}
     .testimonial-grid {display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:30px;}
     .testimonial {background:var(--card); border-radius:16px; padding:30px; border:2px solid rgba(139,92,246,0.5); font-style:italic; line-height:1.7;}
     .guarantee-box {background:#000; border:4px solid gold; border-radius:20px; padding:30px; max-width:600px; margin:auto; font-size:1.5rem; font-weight:bold; color:gold; text-align:center;}
@@ -45,19 +54,19 @@
     }
     .card:hover, .card.highlight {transform:translateY(-20px); z-index:10;}
 
-    @keyframes glow-starter {0%,100%{box-shadow:0 25px 60px rgba(16,185,129,0.5);} 50%{box-shadow:0 35px 80px rgba(16,185,129,0.9);}}
-    @keyframes glow-pro {0%,100%{box-shadow:0 25px 60px rgba(239,68,68,0.5);} 50%{box-shadow:0 35px 80px rgba(239,68,68,0.9);}}
-    @keyframes glow-lifetime {0%,100%{box-shadow:0 25px 60px rgba(251,191,36,0.6);} 50%{box-shadow:0 40px 90px rgba(251,191,36,1);}}
+    @keyframes glow-starter   {0%,100%{box-shadow:0 25px 60px rgba(16,185,129,0.5);}   50%{box-shadow:0 35px 80px rgba(16,185,129,0.9);}}
+    @keyframes glow-pro       {0%,100%{box-shadow:0 25px 60px rgba(239,68,68,0.5);}    50%{box-shadow:0 35px 80px rgba(239,68,68,0.9);}}
+    @keyframes glow-lifetime  {0%,100%{box-shadow:0 25px 60px rgba(251,191,36,0.6);}  50%{box-shadow:0 40px 90px rgba(251,191,36,1);}}
 
-    .card:nth-child(1):hover, .card:nth-child(1).highlight {border-color:#10b981; animation:glow-starter 2s infinite ease-in-out;}
-    .card:nth-child(2):hover, .card:nth-child(2).highlight {border-color:#ef4444; animation:glow-pro 2s infinite ease-in-out;}
-    .card:nth-child(3):hover, .card:nth-child(3).highlight {border-color:#fbbf24; animation:glow-lifetime 2.3s infinite ease-in-out;}
+    .card:nth-child(1):hover, .card:nth-child(1).highlight   {border-color:#10b981; animation:glow-starter 2s infinite ease-in-out;}
+    .card:nth-child(2):hover, .card:nth-child(2).highlight   {border-color:#ef4444; animation:glow-pro 2s infinite ease-in-out;}
+    .card:nth-child(3):hover, .card:nth-child(3).highlight   {border-color:#fbbf24; animation:glow-lifetime 2.3s infinite ease-in-out;}
 
     .price {font-size:4.5rem; font-weight:800; background:linear-gradient(90deg,#8b5cf6,#3b82f6); -webkit-background-clip:text; -webkit-text-fill-color:transparent;}
     .old-price {text-decoration:line-through; color:var(--light); font-size:1.4rem;}
     .buy-btn form {all:unset;}
 
-    /* NEW FAQ SECTION — 10 QUESTIONS WITH SMOOTH DROPDOWN ARROW */
+    /* FAQ — FIXED BROWN BUG + SMOOTH DROPDOWN ARROW */
     .faq {margin:100px 0; max-width:900px; margin-left:auto; margin-right:auto;}
     .faq h2 {font-size:2.6rem; margin-bottom:40px;}
     .faq-item {
@@ -176,7 +185,6 @@
     </div>
   </div>
 
-  <!-- 10-QUESTION FAQ SECTION WITH SMOOTH DROPDOWN ARROW -->
   <div class="faq">
     <h2>Frequently Asked Questions</h2>
     
@@ -258,7 +266,7 @@
     });
   });
 
-  // ALL YOUR EXISTING SCRIPTS (scrollToPricing, spots, countdown, sales, popup, live viewers) — 100% intact
+  // PERFECT SCROLL — NO CUTOFF
   function scrollToPricing() {
     const header = document.getElementById('pricing-header');
     const bannerHeight = document.querySelector('.coupon-banner').offsetHeight + document.querySelector('.trust-bar').offsetHeight + 20;
@@ -272,6 +280,7 @@
     setTimeout(() => { banner.style.opacity = '1'; }, 30000);
   }
 
+  // ALL OTHER SCRIPTS (spots, countdown, sales, popup, live viewers) — 100% intact
   let spots = parseInt(localStorage.getItem("spotsLeft")) || 12;
   document.getElementById("spots-left").textContent = spots;
   setInterval(() => {
