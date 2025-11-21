@@ -9,31 +9,20 @@
     body {margin:0; font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); line-height:1.6; overflow-x:hidden;}
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
 
-    /* RED FLASH15 — SMALLER & BELOW TRUST BAR */
-    .coupon-banner {
-      background:var(--red); color:white; text-align:center; padding:10px; font-weight:bold; font-size:1.1rem;
-      position:fixed; top:50px; left:0; width:100%; z-index:9998; cursor:pointer;
-      animation:pulse 2s infinite; opacity:1; transition:opacity 0.8s ease;
-    }
+    .coupon-banner {background:var(--red); color:white; text-align:center; padding:14px; font-weight:bold; font-size:1.3rem; position:fixed; top:0; left:0; width:100%; z-index:9999; animation:pulse 2s infinite; cursor:pointer; opacity:1; transition:opacity 0.8s ease;}
     @keyframes pulse {0%,100%{transform:scale(1)} 50%{transform:scale(1.03)}}
 
-    /* TRUST BAR — NOW ON TOP */
-    .trust-bar {
-      background:#1a1a2e; padding:12px 0; overflow:hidden; white-space:nowrap; border-bottom:2px solid rgba(139,92,246,0.4);
-      position:fixed; top:0; left:0; width:100%; z-index:9999;
-    }
-    .scroll-text {
-      display:inline-block; animation:scroll-left 45s linear infinite; font-size:1.15rem; font-weight:600;
-    }
+    .trust-bar {background:#1a1a2e; padding:12px 0; overflow:hidden; white-space:nowrap; border-bottom:2px solid rgba(139,92,246,0.4); position:fixed; top:50px; left:0; width:100%; z-index:9998;}
+    .scroll-text {display:inline-block; animation:scroll-left 45s linear infinite; font-size:1.15rem; font-weight:600;}
     .scroll-text:hover {animation-play-state:paused;}
     @keyframes scroll-left {0% {transform:translateX(100%);} 100% {transform:translateX(-100%);}}
 
-    .sales-desktop {position:fixed; top:70px; left:50%; transform:translateX(-50%); background:#1a1a2e; color:white; padding:18px 50px; border-radius:16px; border:3px solid var(--accent); box-shadow:0 15px 40px rgba(0,0,0,0.7); font-size:1.5rem; font-weight:700; z-index:9998; opacity:0; transition:opacity 1.5s ease;}
+    .sales-desktop {position:fixed; top:120px; left:50%; transform:translateX(-50%); background:#1a1a2e; color:white; padding:18px 50px; border-radius:16px; border:3px solid var(--accent); box-shadow:0 15px 40px rgba(0,0,0,0.7); font-size:1.5rem; font-weight:700; z-index:9997; opacity:0; transition:opacity 1.5s ease;}
     .sales-desktop.show {opacity:1;}
-    .sales-mobile {position:fixed; bottom:80px; left:15px; background:#1a1a2e; color:white; padding:12px 18px; border-radius:12px; border-left:4px solid var(--accent); font-size:0.95rem; font-weight:600; z-index:9998; opacity:0; transform:translateY(20px); transition:all 0.6s;}
+    .sales-mobile {position:fixed; bottom:80px; left:15px; background:#1a1a2e; color:white; padding:12px 18px; border-radius:12px; border-left:4px solid var(--accent); font-size:0.95rem; font-weight:600; z-index:9997; opacity:0; transform:translateY(20px); transition:all 0.6s;}
     .sales-mobile.show {opacity:1; transform:translateY(0);}
 
-    header {background:linear-gradient(135deg,#1e1b4b,#0f0f1a); text-align:center; padding:140px 20px 60px; border-bottom:3px solid var(--accent);}
+    header {background:linear-gradient(135deg,#1e1b4b,#0f0f1a); text-align:center; padding:170px 20px 60px; border-bottom:3px solid var(--accent);}
     h1 {margin:0; font-size:3.2rem; font-weight:800; background:linear-gradient(90deg,#8b5cf6,#3b82f6); -webkit-background-clip:text; -webkit-text-fill-color:transparent;}
     h2 {text-align:center; padding:50px 0 20px; font-size:2.4rem; color:var(--accent);}
     .container {max-width:1200px; margin:auto; padding:0 20px;}
@@ -43,7 +32,7 @@
     .spots {font-size:1.6rem; color:#ff6b6b; font-weight:900; margin-top:12px; animation:blink 1.8s infinite;}
     @keyframes blink {0%,100%{opacity:1} 50%{opacity:0.6}}
 
-    .proof,.testimonials,.guarantee,.faq {margin:70px 0;}
+    .proof,.testimonials,.guarantee {margin:70px 0;}
     .testimonial-grid {display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:30px;}
     .testimonial {background:var(--card); border-radius:16px; padding:30px; border:2px solid rgba(139,92,246,0.5); font-style:italic; line-height:1.7;}
     .guarantee-box {background:#000; border:4px solid gold; border-radius:20px; padding:30px; max-width:600px; margin:auto; font-size:1.5rem; font-weight:bold; color:gold; text-align:center;}
@@ -68,8 +57,23 @@
     .old-price {text-decoration:line-through; color:var(--light); font-size:1.4rem;}
     .buy-btn form {all:unset;}
 
-    .faq-item {background:var(--card); border-radius:12px; padding:20px; margin:12px 0; cursor:pointer;}
-    .faq-answer {display:none; padding-top:15px; color:var(--light);}
+    /* FAQ — SAME SYSTEM AS BEFORE (HOVER/TAP DROPDOWN, NO ARROWS) */
+    .faq {margin:100px 0; max-width:900px; margin-left:auto; margin-right:auto;}
+    .faq h2 {font-size:2.6rem; margin-bottom:40px;}
+    .faq-item {
+      background:var(--card); border-radius:16px; margin:15px 0; overflow:hidden;
+      border:2px solid rgba(139,92,246,0.3); transition:all 0.4s ease;
+    }
+    .faq-question {
+      padding:25px; cursor:pointer; font-weight:700; font-size:1.25rem;
+      background:rgba(139,92,246,0.1); transition:background 0.3s;
+    }
+    .faq-question:hover {background:rgba(139,92,246,0.2);}
+    .faq-answer {
+      max-height:0; overflow:hidden; transition:max-height 0.5s ease, padding 0.5s ease;
+      padding:0 25px; font-size:1.1rem; line-height:1.8; color:var(--light);
+    }
+    .faq-item.active .faq-answer {max-height:600px; padding:20px 25px 30px;}
 
     #exitPopup {display:none; position:fixed; inset:0; background:rgba(0,0,0,0.95); z-index:10000; align-items:center; justify-content:center;}
     .exit-box {background:#111; border:5px solid var(--accent); border-radius:20px; padding:40px; text-align:center; max-width:420px;}
@@ -90,7 +94,10 @@
 </head>
 <body>
 
-<!-- TRUST BAR ON TOP -->
+<div class="coupon-banner" id="flashBanner" onclick="scrollToPricing()">
+  FLASH15 = 15% OFF NEXT 24H ONLY
+</div>
+
 <div class="trust-bar">
   <div class="scroll-text">
     <span style="color:#8b5cf6; font-weight:800;">BEST VENDORS IN THE GAME</span> 
@@ -100,11 +107,6 @@
     <span style="margin:0 40px 60px; color:#8b5cf6; font-weight:800;">BEST VENDORS IN THE GAME</span> 
     <span style="margin:0 40px; color:#fbbf24;">★★★★★ 4.98/5 from 427+ happy customers</span>
   </div>
-</div>
-
-<!-- RED FLASH15 — SMALLER & BELOW TRUST BAR -->
-<div class="coupon-banner" id="flashBanner" onclick="scrollToPricing()">
-  FLASH15 = 15% OFF NEXT 24H ONLY
 </div>
 
 <div class="sales-desktop" id="salesDesktop"></div>
@@ -170,11 +172,59 @@
     </div>
   </div>
 
+  <!-- FAQ — 10 QUESTIONS, SAME PERFECT HOVER/TAP DROPDOWN (NO ARROWS) -->
   <div class="faq">
     <h2>Frequently Asked Questions</h2>
-    <div class="faq-item" onclick="this.querySelector('.faq-answer').style.display=this.querySelector('.faq-answer').style.display==='block'?'none':'block'"><strong>Is this another dead list?</strong><div class="faq-answer">No. I order from every supplier weekly. Dead contact = instant refund.</div></div>
-    <div class="faq-item" onclick="this.querySelector('.faq-answer').style.display=this.querySelector('.faq-answer').style.display==='block'?'none':'block'"><strong>How fast is delivery?</strong><div class="faq-answer">Instant — under 60 seconds after payment.</div></div>
-    <div class="faq-item" onclick="this.querySelector('.faq-answer').style.display=this.querySelector('.faq-answer').style.display==='block'?'none':'block'"><strong>Do you offer refunds?</strong><div class="faq-answer">Yes — 7 days, no questions asked.</div></div>
+
+    <div class="faq-item">
+      <div class="faq-question">Are these suppliers real or another fake list?</div>
+      <div class="faq-answer">100% real. I personally order from every single one weekly. Dead contact = instant refund, no questions asked.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">How fast do I get the supplier list?</div>
+      <div class="faq-answer">Instantly — under 60 seconds after payment. Delivered straight to your email and PayPal receipt.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">What are the shipping times?</div>
+      <div class="faq-answer">2–9 days worldwide. Most orders arrive in 5–7 days. These are the exact suppliers the big resellers use.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Do they ship to my country?</div>
+      <div class="faq-answer">Yes — every supplier ships worldwide, including USA, UK, Canada, Australia, Europe, and more. No restrictions.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">How much do items cost from the suppliers?</div>
+      <div class="faq-answer">Usually $10–$100 per item depending on the product. Profit margins are typically 100–400%.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">What if I don’t receive the list?</div>
+      <div class="faq-answer">Impossible — it's automated. But if anything goes wrong, reply to the delivery email and I fix it in minutes.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Is there a refund policy?</div>
+      <div class="faq-answer">Yes — 7-day money-back guarantee. If you're not happy for any reason, full refund, no questions asked.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Can I upgrade later?</div>
+      <div class="faq-answer">Yes! Just pay the difference. Many people buy Starter and upgrade to Lifetime the same day.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Do you offer support?</div>
+      <div class="faq-answer">Yes — I personally answer every email within hours (even weekends). Lifetime buyers get private Discord access.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Why is this cheaper than other lists?</div>
+      <div class="faq-answer">Because I’m not a guru selling $997 courses. I’m a reseller just like you — I have the real connects and want to help others win.</div>
+    </div>
   </div>
 </div>
 
@@ -197,35 +247,44 @@
 <footer><div class="container"><p>100% real contacts • Instant delivery • Reply to the email if you have questions — I answer personally</p></div></footer>
 
 <script>
-  // LIVE VIEWERS — RANDOM 67–1487, SAME ON DESKTOP + MOBILE, CHANGES AFTER FULL SCROLL
-  let liveViewers = parseInt(localStorage.getItem("liveViewers")) || Math.floor(Math.random() * 1400) + 67;
-  document.getElementById("live-viewers").textContent = liveViewers.toLocaleString();
+  // FAQ TOGGLE — SAME PERFECT SYSTEM (HOVER/TAP, NO ARROWS)
+  document.querySelectorAll('.faq-item').forEach(item => {
+    const question = item.querySelector('.faq-question');
+    question.addEventListener('click', () => {
+      item.classList.toggle('active');
+    });
+    // Hover for desktop
+    item.addEventListener('mouseenter', () => {
+      if (window.innerWidth > 768) item.classList.add('active');
+    });
+    item.addEventListener('mouseleave', () => {
+      if (window.innerWidth > 768) item.classList.remove('active');
+    });
+  });
 
-  // Change only after animation completes (~45s)
-  setInterval(() => {
-    liveViewers = Math.floor(Math.random() * 1420) + 67; // 67–1487
-    document.getElementById("live-viewers").textContent = liveViewers.toLocaleString();
-    localStorage.setItem("liveViewers", liveViewers);
-  }, 45000); // 45 seconds = one full scroll cycle
-
-  // PERFECT SCROLL — NO CUTOFF ON ANY DEVICE
+  // PERFECT SCROLL
   function scrollToPricing() {
     const header = document.getElementById('pricing-header');
     const bannerHeight = document.querySelector('.coupon-banner').offsetHeight + document.querySelector('.trust-bar').offsetHeight + 20;
     const y = header.getBoundingClientRect().top + window.pageYOffset - bannerHeight;
-
     window.scrollTo({ top: y, behavior: 'smooth' });
-
     const lifetime = document.getElementById('lifetime-card');
     lifetime.classList.add('highlight');
     setTimeout(() => lifetime.classList.remove('highlight'), 3000);
-
     const banner = document.getElementById('flashBanner');
     banner.style.opacity = '0';
     setTimeout(() => { banner.style.opacity = '1'; }, 30000);
   }
 
-  // Countdown + mini version
+  // ALL OTHER SCRIPTS (spots, countdown, sales, popup, live viewers) — 100% intact
+  let spots = parseInt(localStorage.getItem("spotsLeft")) || 12;
+  document.getElementById("spots-left").textContent = spots;
+  setInterval(() => {
+    if (Math.random() < 0.4 && spots > 4) {
+      spots--; document.getElementById("spots-left").textContent = spots; localStorage.setItem("spotsLeft", spots);
+    }
+  }, 30000);
+
   function updateTimer() {
     const n = new Date().getTime();
     const m = new Date(); m.setHours(24,0,0,0);
@@ -238,14 +297,13 @@
   }
   setInterval(updateTimer,1000); updateTimer();
 
-  // Spots, sales, popup — unchanged
-  let spots = parseInt(localStorage.getItem("spotsLeft")) || 12;
-  document.getElementById("spots-left").textContent = spots;
+  let liveViewers = parseInt(localStorage.getItem("liveViewers")) || Math.floor(Math.random() * 1420) + 67;
+  document.getElementById("live-viewers").textContent = liveViewers.toLocaleString();
   setInterval(() => {
-    if (Math.random() < 0.4 && spots > 4) {
-      spots--; document.getElementById("spots-left").textContent = spots; localStorage.setItem("spotsLeft", spots);
-    }
-  }, 30000);
+    liveViewers = Math.floor(Math.random() * 1420) + 67;
+    document.getElementById("live-viewers").textContent = liveViewers.toLocaleString();
+    localStorage.setItem("liveViewers", liveViewers);
+  }, 45000);
 
   const salesMessages = ["Someone in California just bought Lifetime All-Access!","Someone in Texas just grabbed Pro Pack","Another buyer from New York upgraded to Lifetime","Person in Florida just purchased Starter Pack"];
   function showSale() {
