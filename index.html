@@ -27,11 +27,12 @@
     .spots {font-size:1.6rem; color:#ff6b6b; font-weight:900; margin-top:12px; animation:blink 1.8s infinite;}
     @keyframes blink {0%,100%{opacity:1} 50%{opacity:0.6}}
 
-    .proof,.testimonials,.guarantee,.grid,.faq {margin:70px 0;}
+    .proof,.testimonials,.guarantee,.faq {margin:70px 0;}
     .testimonial-grid {display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:30px;}
     .testimonial {background:var(--card); border-radius:16px; padding:30px; border:2px solid rgba(139,92,246,0.5); font-style:italic; line-height:1.7;}
     .guarantee-box {background:#000; border:4px solid gold; border-radius:20px; padding:30px; max-width:600px; margin:auto; font-size:1.5rem; font-weight:bold; color:gold; text-align:center;}
-    .grid {display:grid; grid-template-columns:repeat(auto-fit,minmax(340px,1fr)); gap:40px;}
+
+    .grid {display:grid; grid-template-columns:repeat(auto-fit,minmax(340px,1fr)); gap:40px; margin:80px 0;}
     .card {background:var(--card); border-radius:20px; padding:40px 25px; text-align:center; box-shadow:0 15px 40px rgba(0,0,0,0.6); transition:0.4s; border:2px solid transparent;}
     .card:hover, .card.highlight {transform:translateY(-20px); border-color:var(--accent); box-shadow:0 25px 50px rgba(139,92,246,0.4);}
     .price {font-size:4.5rem; font-weight:800; background:linear-gradient(90deg,#8b5cf6,#3b82f6); -webkit-background-clip:text; -webkit-text-fill-color:transparent;}
@@ -91,8 +92,7 @@
   <div class="guarantee"><div class="guarantee-box">7-Day Money-Back Guarantee<br><span style="font-size:1.1rem;">Love it or full refund — no questions</span></div></div>
 
   <h2>Choose Your Access Level</h2>
-  <div class="grid" id="pricing">
-    <!-- Your three PayPal cards (unchanged) -->
+  <div class="grid">
     <div class="card">
       <h3>Starter Pack</h3><p>Clothing • Shoes • Accessories</p><div class="price">$35</div><div class="old-price">$79</div>
       <div class="buy-btn"><form action="https://www.paypal.com/ncp/payment/A4JGK2BPLVQQG" method="post" target="_blank" style="display:inline-grid;gap:0.5rem;">
@@ -124,7 +124,7 @@
   </div>
 </div>
 
-<!-- POPUP (used for both desktop exit-intent & mobile scroll) -->
+<!-- POPUP (desktop exit-intent + mobile scroll 70%) -->
 <div id="exitPopup">
   <div class="exit-box">
     <h3>WAIT — Don’t Miss Out!</h3>
@@ -136,15 +136,15 @@
   </div>
 </div>
 
-<div class="mobile-bar" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'}); document.getElementById('lifetime-card').classList.add('highlight'); setTimeout(()=>document.getElementById('lifetime-card').classList.remove('highlight'),3000);">
+<!-- FIXED: scrolls directly to Lifetime card + flashes it -->
+<div class="mobile-bar" onclick="document.getElementById('lifetime-card').scrollIntoView({behavior:'smooth'}); document.getElementById('lifetime-card').classList.add('highlight'); setTimeout(()=>document.getElementById('lifetime-card').classList.remove('highlight'),3000);">
   Tap Here → Lifetime Only $100 (Price Rising Soon)
 </div>
 
 <footer><div class="container"><p>100% real contacts • Instant delivery • Reply to the email if you have questions — I answer personally</p></div></footer>
 
 <script>
-  // Persistent scarcity, countdown, sales notifications → unchanged (same as before)
-
+  // Persistent spots
   let spots = parseInt(localStorage.getItem("spotsLeft")) || 12;
   document.getElementById("spots-left").textContent = spots;
   setInterval(() => {
@@ -155,6 +155,7 @@
     }
   }, 30000);
 
+  // Countdown
   function updateTimer() {
     const n = new Date().getTime();
     const m = new Date(); m.setHours(24,0,0,0);
@@ -166,6 +167,7 @@
   }
   setInterval(updateTimer,1000); updateTimer();
 
+  // Sales notifications
   const salesMessages = ["Someone in California just bought Lifetime All-Access!","Someone in Texas just grabbed Pro Pack","Another buyer from New York upgraded to Lifetime","Person in Florida just purchased Starter Pack"];
   function showSale() {
     const msg = salesMessages[Math.floor(Math.random()*salesMessages.length)];
@@ -182,18 +184,14 @@
   setTimeout(showSale, 8000);
   setInterval(showSale, Math.random()*10000 + 20000);
 
-  // === EXIT-INTENT (DESKTOP) + SCROLL POPUP (MOBILE) ===
+  // Popup logic (desktop exit + mobile scroll 70%)
   let popupShown = false;
-
-  // Desktop: mouse leave
   document.addEventListener("mouseout", e => {
     if (!e.relatedTarget && !popupShown && window.innerWidth > 768) {
       popupShown = true;
       document.getElementById("exitPopup").style.display = "flex";
     }
   });
-
-  // Mobile: trigger at 70% scroll (once per visit)
   window.addEventListener("scroll", () => {
     if (popupShown || window.innerWidth > 768) return;
     const percent = (window.scrollY + window.innerHeight) / document.body.scrollHeight;
