@@ -57,7 +57,7 @@
     .old-price {text-decoration:line-through; color:var(--light); font-size:1.4rem;}
     .buy-btn form {all:unset;}
 
-    /* FAQ — HOVER/TAP DROPDOWN, NO ARROWS, NO GLITCH */
+    /* FAQ — 10 QUESTIONS, HOVER/TAP DROPDOWN, NO ARROWS, NO GLITCH */
     .faq {margin:100px 0; max-width:900px; margin-left:auto; margin-right:auto;}
     .faq h2 {font-size:2.6rem; margin-bottom:40px;}
     .faq-item {
@@ -80,7 +80,7 @@
     .exit-box input[type=submit] {background:var(--accent); color:white; border:none; padding:18px 50px; border-radius:50px; font-size:1.4rem; cursor:pointer;}
 
     .mobile-bar {
-      display:none; position:fixed; bottom:0; left:0; width:100%;
+      display:none; position:fixed; top:0; left:0; width:100%;
       background:linear-gradient(135deg,var(--accent),#3b82f6); color:white;
       padding:11px 16px; text-align:center; font-size:1.05rem; font-weight:800; line-height:1.4;
       z-index:997; cursor:pointer; box-shadow:0 -4px 20px rgba(0,0,0,0.4);
@@ -172,7 +172,7 @@
     </div>
   </div>
 
-  <!-- FAQ — 10 QUESTIONS, HOVER/TAP DROPDOWN, NO ARROWS, NO GLITCHES -->
+  <!-- FAQ — 10 QUESTIONS, HOVER/TAP DROPDOWN, NO ARROWS, NO GLITCH */
   <div class="faq">
     <h2>Frequently Asked Questions</h2>
 
@@ -247,16 +247,14 @@
 <footer><div class="container"><p>100% real contacts • Instant delivery • Reply to the email if you have questions — I answer personally</p></div></footer>
 
 <script>
-  // FAQ TOGGLE — HOVER (DESKTOP) + TAP (MOBILE), NO ARROWS, NO GLITCHES
+  // FAQ TOGGLE — HOVER (DESKTOP) + TAP (MOBILE), NO ARROWS, NO GLITCH
   document.querySelectorAll('.faq-item').forEach(item => {
     const question = item.querySelector('.faq-question');
 
     // Click works everywhere
     question.addEventListener('click', (e) => {
-      if (window.innerWidth <= 768) {
-        e.stopPropagation();
-        item.classList.toggle('active');
-      }
+      e.stopPropagation();
+      item.classList.toggle('active');
     });
 
     // Hover only on desktop
