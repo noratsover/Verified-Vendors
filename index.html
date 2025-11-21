@@ -14,17 +14,15 @@
     .container { max-width:1200px; margin:auto; padding:0 20px; }
     .proof { background:rgba(139,92,246,0.15); border:1px solid var(--accent); padding:28px; border-radius:16px; text-align:center; margin:40px 0; font-size:1.15rem; }
     .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(340px,1fr)); gap:35px; margin:60px 0; }
-    .card { background:var(--card); border-radius:20px; padding:40px 25px; text-align:center; box-shadow:0 12px 35px rgba(0,0,0,0.5); transition:all 0.4s; border:1px solid rgba(139,92,246,0.3); overflow:hidden; position:relative; }
+    .card { background:var(--card); border-radius:20px; padding:40px 25px; text-align:center; box-shadow:0 12px 35px rgba(0,0,0,0.5); transition:all 0.4s; border:1px solid rgba(139,92,246,0.3); }
     .card:hover { transform:translateY(-15px); box-shadow:0 25px 50px rgba(139,92,246,0.25); border-color:var(--accent); }
     .price { font-size:4rem; font-weight:800; background:linear-gradient(90deg,#8b5cf6,#3b82f6); -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin:15px 0; }
     .old-price { text-decoration:line-through; color:var(--light); font-size:1.3rem; }
-    .paypal-btn { margin:30px auto; width:280px; height:60px; opacity:0; transform:translateY(20px); transition:all 0.3s ease-out; } /* Hidden by default */
-    .card:hover .paypal-btn { opacity:1; transform:translateY(0); } /* Reveal on hover */
+    .buy-btn { margin:30px auto 10px; } /* clean spacing */
+    .buy-btn form { all:unset; } /* removes default form styling */
     footer { background:#0a0a14; color:var(--light); text-align:center; padding:60px 20px; margin-top:100px; border-top:1px solid rgba(139,92,246,0.3); }
     .tag { display:inline-block; background:rgba(139,92,246,0.3); padding:10px 24px; border-radius:50px; font-size:0.95rem; margin:10px; }
   </style>
-  <!-- PayPal SDK – loaded once -->
-  <script src="https://www.paypal.com/sdk/js?client-id=BAAc06VF_RwKGeBXtv25JTdIb0j2hzWOreRefMjvvozFrWJWAlgGXMT-U8cLrOv4K6Hn9hrsD50lAtRn9c&components=hosted-buttons&enable-funding=venmo&currency=USD"></script>
 </head>
 <body>
 
@@ -41,7 +39,7 @@
 
 <div class="container">
   <div class="proof">
-    <strong>Real Reseller Since 2023</strong> — I've helped 400+ people quit their 9-5 with these exact contacts<br>
+    <strong>Real Reseller Since 2023</strong> — I’ve helped 400+ people quit their 9-5 with these exact contacts<br>
     No fake lists. No dead WeChat IDs. Only suppliers I still order from weekly.
   </div>
 
@@ -55,7 +53,13 @@
       <p>Clothing • Shoes • Accessories</p>
       <div class="price">$35</div>
       <div class="old-price">$79</div>
-      <div class="paypal-btn" id="paypal-container-A4JGK2BPLVQQG"></div>
+      <div class="buy-btn">
+        <form action="https://www.paypal.com/ncp/payment/A4JGK2BPLVQQG" method="post" target="_blank" style="display:inline-grid;justify-items:center;align-content:start;gap:0.5rem;">
+          <input type="submit" value="Buy Now" style="text-align:center;border:none;border-radius:0.25rem;min-width:11.625rem;padding:0 2rem;height:2.625rem;font-weight:bold;background-color:#8b5cf6;color:#ffffff;font-family:'Helvetica Neue',Arial,sans-serif;font-size:1rem;line-height:1.25rem;cursor:pointer;">
+          <img src="https://www.paypalobjects.com/images/Debit_Credit_APM.svg" alt="cards">
+          <section style="font-size:0.75rem;color:#94a3b8;">Powered by <img src="https://www.paypalobjects.com/paypal-ui/logos/svg/paypal-wordmark-color.svg" alt="paypal" style="height:0.875rem;vertical-align:middle;"></section>
+        </form>
+      </div>
     </div>
 
     <!-- Pro Pack $50 -->
@@ -64,7 +68,13 @@
       <p>Everything in Starter + Moissanite • Watches • Electronics</p>
       <div class="price">$50</div>
       <div class="old-price">$149</div>
-      <div class="paypal-btn" id="paypal-container-ZZK58UXVGMN7W"></div>
+      <div class="buy-btn">
+        <form action="https://www.paypal.com/ncp/payment/ZZK58UXVGMN7W" method="post" target="_blank" style="display:inline-grid;justify-items:center;align-content:start;gap:0.5rem;">
+          <input type="submit" value="Buy Now" style="text-align:center;border:none;border-radius:0.25rem;min-width:11.625rem;padding:0 2rem;height:2.625rem;font-weight:bold;background-color:#8b5cf6;color:#ffffff;font-family:'Helvetica Neue',Arial,sans-serif;font-size:1rem;line-height:1.25rem;cursor:pointer;">
+          <img src="https://www.paypalobjects.com/images/Debit_Credit_APM.svg" alt="cards">
+          <section style="font-size:0.75rem;color:#94a3b8;">Powered by <img src="https://www.paypalobjects.com/paypal-ui/logos/svg/paypal-wordmark-color.svg" alt="paypal" style="height:0.875rem;vertical-align:middle;"></section>
+        </form>
+      </div>
     </div>
 
     <!-- Lifetime All-Access $100 -->
@@ -73,7 +83,13 @@
       <p>Every supplier I ever add + Private Discord</p>
       <div class="price">$100</div>
       <div class="old-price">$299</div>
-      <div class="paypal-btn" id="paypal-container-944N2GQY262HE"></div>
+      <div class="buy-btn">
+        <form action="https://www.paypal.com/ncp/payment/944N2GQY262HE" method="post" target="_blank" style="display:inline-grid;justify-items:center;align-content:start;gap:0.5rem;">
+          <input type="submit" value="Buy Now" style="text-align:center;border:none;border-radius:0.25rem;min-width:11.625rem;padding:0 2rem;height:2.625rem;font-weight:bold;background-color:#8b5cf6;color:#ffffff;font-family:'Helvetica Neue',Arial,sans-serif;font-size:1rem;line-height:1.25rem;cursor:pointer;">
+          <img src="https://www.paypalobjects.com/images/Debit_Credit_APM.svg" alt="cards">
+          <section style="font-size:0.75rem;color:#94a3b8;">Powered by <img src="https://www.paypalobjects.com/paypal-ui/logos/svg/paypal-wordmark-color.svg" alt="paypal" style="height:0.875rem;vertical-align:middle;"></section>
+        </form>
+      </div>
     </div>
 
   </div>
@@ -89,24 +105,6 @@
     <p>100% real contacts • Instant delivery • Reply to the email if you have questions — I answer personally</p>
   </div>
 </footer>
-
-<!-- Render all three buttons (with load wait) -->
-<script>
-  window.addEventListener('load', function() {
-    // Starter
-    if (window.paypal && paypal.HostedButtons) {
-      paypal.HostedButtons({ hostedButtonId: "A4JGK2BPLVQQG" }).render("#paypal-container-A4JGK2BPLVQQG").catch(e => console.log('Starter error:', e));
-    }
-    // Pro
-    if (window.paypal && paypal.HostedButtons) {
-      paypal.HostedButtons({ hostedButtonId: "ZZK58UXVGMN7W" }).render("#paypal-container-ZZK58UXVGMN7W").catch(e => console.log('Pro error:', e));
-    }
-    // Lifetime
-    if (window.paypal && paypal.HostedButtons) {
-      paypal.HostedButtons({ hostedButtonId: "944N2GQY262HE" }).render("#paypal-container-944N2GQY262HE").catch(e => console.log('Lifetime error:', e));
-    }
-  });
-</script>
 
 </body>
 </html>
